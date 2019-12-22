@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const db = require("./config/keys").mongoURI;
+mongoose.Promise = global.Promise;
 
 const items = require("./routes/api/items");
 
