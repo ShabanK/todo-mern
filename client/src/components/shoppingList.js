@@ -30,7 +30,14 @@ const ShoppingList = props => {
           {items.map(({ id, name }) => (
             <CSSTransition key={id} timeout={500} classNames="fade">
               <ListGroupItem>
-                <Button className="remove-btn" color="danger" size="sm">
+                <Button
+                  className="remove-btn"
+                  onClick={() => {
+                    setItems(items.filter(item => item.id !== id));
+                  }}
+                  color="danger"
+                  size="sm"
+                >
                   &times;
                 </Button>
                 {name}
