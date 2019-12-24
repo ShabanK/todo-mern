@@ -3,7 +3,7 @@ import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import uuid from "uuid";
 
-const shoppingList = () => {
+const ShoppingList = props => {
   const [items, setItems] = useState([
     { id: uuid(), name: "Eggs" },
     { id: uuid(), name: "Milk" },
@@ -18,9 +18,23 @@ const shoppingList = () => {
         style={{ marginBottom: "2rem" }}
         onClick={() => {
           const name = prompt("Enter Item");
+          if (name) {
+            setItems([...items, { id: uuid(), name: name }]);
+          }
         }}
-      ></Button>
+      >
+        Add Item
+      </Button>
+      <ListGroup>
+        <TransitionGroup className="shopping-list">
+          {items.map(({ id, name }) => {
+            <CSSTransition key={id} timeout={500} className="fade">
+              {/* <ListGroupItem>{name}</ListGroupItem> */}
+            </CSSTransition>;
+          })}
+        </TransitionGroup>
+      </ListGroup>
     </Container>
   );
 };
-export default shoppingList;
+export default ShoppingList;
