@@ -1,15 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import uuid from "uuid";
+const axios = require("axios");
 
 const ShoppingList = props => {
-  const [items, setItems] = useState([
-    { id: uuid(), name: "Eggs" },
-    { id: uuid(), name: "Milk" },
-    { id: uuid(), name: "Steak" },
-    { id: uuid(), name: "Water" }
-  ]);
+  const [items, setItems] = useState([]);
+
+  // const fetching = async () => {
+  //   try {
+  //     await axios.get("http://localhost:5000/api/items").then(items => {
+  //       const arr = items.data.map(listitem => ({
+  //         id: listitem._id,
+  //         name: listitem.name
+  //       }));
+  //       setItems(arr);
+  //     });
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
+  // fetching();
+
+  useEffect(() => {
+    const fetcher = async () => {
+      try {
+        await axios.get("http://localhost:5000/api/items").then(items => {
+          const arr = items.data.map(listitem => ({
+            id: listitem._id,
+            name: listitem.name
+          }));
+          setItems(arr);
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetcher();
+  }, []);
 
   return (
     <Container>
