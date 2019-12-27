@@ -25,10 +25,12 @@ const ShoppingList = props => {
     fetcher();
   }, []);
 
-  const kill = e => {
-    console.log(e.target.key);
-    // setItems(items.filter(item => item.id !== id));
-    // axios.delete("http://localhost:5000/api/items", {_id:})
+  const kill = id => {
+    console.log(id);
+    axios.delete(`http://localhost:5000/api/items/${id}`).then(() => {
+      console.log("DELETED ", id);
+      setItems(items.filter(item => item.id !== id));
+    });
   };
 
   return (
@@ -40,11 +42,11 @@ const ShoppingList = props => {
             <CSSTransition key={id} timeout={500} classNames="fade">
               <ListGroupItem>
                 <Button
-                  key={id}
                   className="remove-btn"
-                  onClick={kill}
+                  onClick={kill.bind(null, id)}
                   color="danger"
                   size="sm"
+                  key={"Sa"}
                 >
                   &times;
                 </Button>

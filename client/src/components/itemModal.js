@@ -6,7 +6,6 @@ const AddItem = props => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
-  const [unmountOnClose, setUnmountOnClose] = useState(true);
   const [name, setName] = useState();
 
   const toggle = () => setModal(!modal);
@@ -39,7 +38,7 @@ const AddItem = props => {
         isOpen={modal}
         toggle={toggle}
         className={className}
-        unmountOnClose={unmountOnClose}
+        unmountOnClose={true}
       >
         <ModalHeader toggle={toggle}>Add your item...</ModalHeader>
         <ModalBody>
