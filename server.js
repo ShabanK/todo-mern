@@ -1,10 +1,11 @@
 //imports
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
-const db = require("./config/keys").mongoURI;
+const db = process.env.MONGO_URI;
 mongoose.Promise = global.Promise;
 
 const items = require("./routes/api/items");
