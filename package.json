@@ -11,7 +11,7 @@
     "server": "nodemon server.js",
     "client": "yarn start --prefix client",
     "dev": "concurrently \"yarn server\" \"yarn --cwd client start\"",
-    "heroku-postbuild": "YARN_CONFIG_PRODUCTION=false yarn --cwd client install && yarn --cwd client build"
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn --cwd client install && yarn --cwd client build"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
