@@ -16,7 +16,7 @@ const AddItem = props => {
     console.log(name);
     setName(null);
     if (name) {
-      axios.post("http://localhost:5000/api/items", { name: name }).then(() => {
+      axios.post("/api/items", { name: name }).then(() => {
         console.log("sent to database", { name: name });
       });
       props.setItems([...props.items, { id: uuid(), name: name }]);

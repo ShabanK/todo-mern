@@ -11,7 +11,7 @@ const ShoppingList = props => {
   useEffect(() => {
     const fetcher = async () => {
       try {
-        await axios.get("http://localhost:5000/api/items").then(items => {
+        await axios.get("/api/items").then(items => {
           const arr = items.data.map(listitem => ({
             id: listitem._id,
             name: listitem.name
@@ -27,7 +27,7 @@ const ShoppingList = props => {
 
   const kill = id => {
     console.log(id);
-    axios.delete(`http://localhost:5000/api/items/${id}`).then(() => {
+    axios.delete(`/api/items/${id}`).then(() => {
       console.log("DELETED ", id);
       setItems(items.filter(item => item.id !== id));
     });
