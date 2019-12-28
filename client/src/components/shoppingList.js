@@ -26,9 +26,7 @@ const ShoppingList = props => {
   }, []);
 
   const kill = id => {
-    console.log(id);
     axios.delete(`/api/items/${id}`).then(() => {
-      console.log("DELETED ", id);
       setItems(items.filter(item => item.id !== id));
     });
   };

@@ -19,7 +19,6 @@ router.get("/", (req, res) => {
 // @desc    Create an item
 // @access  PUBLIC
 router.post("/", (req, res) => {
-  console.log(req.body);
   const newItem = new Item({ name: req.body.name });
   newItem
     .save()

@@ -13,13 +13,11 @@ const AddItem = props => {
   const onSubmit = e => {
     e.preventDefault();
     toggle();
-    console.log(name);
     setName(null);
     if (name) {
       axios.post("/api/items", { name: name }).then(() => {
-        console.log("sent to database", { name: name });
+        props.setItems([...props.items, { id: uuid(), name: name }]);
       });
-      props.setItems([...props.items, { id: uuid(), name: name }]);
     }
   };
 
